@@ -1,7 +1,7 @@
 from django.db import models
+from django.utils import timezone
 from django.core.validators import MinLengthValidator
-from .validators import formato_CarnetBolivia,fecha_menorActual,no_cero,solo_numeros,fecha_menorIgualActual
-from datetime import datetime  
+from .validators import formato_CarnetBolivia,fecha_menorActual,no_cero,solo_numeros,fecha_menorIgualActual 
 
 class CategoriaMaterial(models.Model):
     nombre = models.CharField(max_length=40, validators=[MinLengthValidator(5)], unique=True)
@@ -44,7 +44,7 @@ class Prestamo(models.Model):
     numeroTelefonico = models.CharField(max_length=20,validators=[MinLengthValidator(7),solo_numeros])
     direccion = models.CharField(max_length=200 ,validators=[MinLengthValidator(10)])
     ci = models.CharField(max_length=10,unique=True,validators=[formato_CarnetBolivia])
-    fechaPrestamo = models.DateTimeField(default=datetime.now(), validators=[fecha_menorIgualActual])
+    fechaPrestamo = models.DateTimeField(default=timezone.now, validators=[fecha_menorIgualActual])
     fechaDevolucion = models.DateTimeField(auto_now=False, auto_now_add=False,null=True,blank=True, validators=[fecha_menorIgualActual])
     materialPrestado = models.ForeignKey(MaterialBibliografico, on_delete=models.CASCADE) 
     def __str__(self):

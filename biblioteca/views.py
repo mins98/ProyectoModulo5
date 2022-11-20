@@ -10,6 +10,7 @@ from .serializers import BibliotecaSerializer, MaterialBibliograficoSerializer, 
 from .models import Biblioteca,MaterialBibliografico,Prestamo
 from datetime import datetime  
 from django.core import serializers
+from django.utils import timezone
 
 class BibliotecaCreateView(generics.CreateAPIView, generics.ListAPIView):
     queryset = Biblioteca.objects.all()
@@ -33,7 +34,7 @@ def devolver_prestamo(request):
     cs= ContactSerializer(data=request.data)
     if cs.is_valid():
         idChange=cs.getId()
-        Prestamo.objects.filter(pk=idChange).update(fechaDevolucion=datetime.now())
+        Prestamo.objects.filter(pk=idChange).update(fechaDevolucion=timezone.now)
         prestamoCambiado= Prestamo.objects.filter(pk=idChange)
         qs_json = serializers.serialize('json', prestamoCambiado)
         return JsonResponse({
