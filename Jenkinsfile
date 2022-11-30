@@ -10,7 +10,8 @@ pipeline {
                 echo 'INICIANDO CONTENEDORES EN DEV'
                 sh "docker compose build"
                 sh "docker compose up -d"
-                timeout(time: 5, unit: "SECONDS")
+                sh 'sleep 10'
+                
             }
         }
         stage('Dev test') {
@@ -30,7 +31,7 @@ pipeline {
                 git 'https://github.com/mins98/ProyectoModulo5'
                 echo 'INICIANDO CONTENEDORES EN QA'
                 sh "docker compose up -d"
-                timeout(time: 5, unit: "SECONDS")
+              
             }
         }
         stage('QA test') {
@@ -39,7 +40,7 @@ pipeline {
                 echo 'INICIANDO TESTS EN QA'
                 sh "docker ps"
                 sh "curl 192.168.1.11:80/biblioteca/materiales/create_list"
-                 sh "curl 192.168.1.11:80/biblioteca/bibliotecas/create_list"
+                sh "curl 192.168.1.11:80/biblioteca/bibliotecas/create_list"
                 echo 'TESTS EN QA FINALIZADOS'
                 sh "docker stop \$(docker ps -aq)" 
                 sh "docker rm \$(docker ps -aq)" 
