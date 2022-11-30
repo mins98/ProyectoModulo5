@@ -6,13 +6,7 @@ pipeline {
     stages {
         stage('clone and build') {
             agent {label "dev"}
-            environment {
-                PS = sh "docker ps"
-            }
             steps {
-            
-                echo $PS
-                echo 'DESCARGANDO EN DEV'
                 git 'https://github.com/mins98/ProyectoModulo5'
                 echo 'INICIANDO CONTENEDORES EN DEV'
                 sh "docker compose build"
