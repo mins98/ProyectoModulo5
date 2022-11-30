@@ -2,14 +2,16 @@ pipeline {
     agent any
     environment {
         IPSERVICIO = '192.168.1.11'
-        j1BuildResult=''
     }
     stages {
         stage('clone and build') {
             agent {label "dev"}
+            environment {
+                PS = sh "docker ps"
+            }
             steps {
-                $j1BuildResult = sh "docker ps"
-                echo $j1BuildResult
+            
+                echo $PS
                 echo 'DESCARGANDO EN DEV'
                 git 'https://github.com/mins98/ProyectoModulo5'
                 echo 'INICIANDO CONTENEDORES EN DEV'
