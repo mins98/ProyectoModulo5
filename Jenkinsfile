@@ -31,6 +31,7 @@ pipeline {
                 git 'https://github.com/mins98/ProyectoModulo5'
                 echo 'INICIANDO CONTENEDORES EN QA'
                 sh "docker compose up -d"
+                sh 'sleep 10'
               
             }
         }
