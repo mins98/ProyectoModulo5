@@ -15,8 +15,8 @@ pipeline {
             agent {label "dev"}
             steps {
                 sh "docker ps"
-                sh "docker stop $(docker ps -aq)" 
-                sh "docker rm $(docker ps -aq)" 
+                sh "docker stop \$(docker ps -aq)" 
+                sh "docker rm \$(docker ps -aq)" 
             }
         }
         stage('QA') {
@@ -30,8 +30,8 @@ pipeline {
             agent {label "qa"}
             steps {
                 sh "docker ps"
-                sh "docker stop $(docker ps -aq)" 
-                sh "docker rm $(docker ps -aq)" 
+                sh "docker stop \$(docker ps -aq)" 
+                sh "docker rm \$(docker ps -aq)" 
             }
         }
         stage('Despliegue en PROD') {
