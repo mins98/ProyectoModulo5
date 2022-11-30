@@ -41,6 +41,7 @@ pipeline {
             steps {
                 git 'https://github.com/mins98/ProyectoModulo5'
                 sh "docker compose up -d"
+                echo 'Contenedores levantados correctamente en produccion'
             }
         }
     }
