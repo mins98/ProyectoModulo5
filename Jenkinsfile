@@ -41,6 +41,7 @@ pipeline {
                 echo 'INICIANDO TESTS EN QA'
                 sh "docker ps"
                 sh "curl 192.168.1.11:80/biblioteca/materiales/create_list"
+                sh 'sleep 5'
                 sh "curl 192.168.1.11:80/biblioteca/bibliotecas/create_list"
                 echo 'TESTS EN QA FINALIZADOS'
                 sh "docker stop \$(docker ps -aq)" 
