@@ -15,7 +15,6 @@ pipeline {
             agent {label "dev"}
             steps {
                 sh "docker ps"
-                echo 'Prueba DEV correcta'
                 sh "docker stop $(docker ps -aq)" 
                 sh "docker rm $(docker ps -aq)" 
             }
@@ -30,9 +29,7 @@ pipeline {
         stage('QA test') {
             agent {label "qa"}
             steps {
-                echo 'Iniciando prueba QA'
                 sh "docker ps"
-                echo 'Prueba QA correcta'
                 sh "docker stop $(docker ps -aq)" 
                 sh "docker rm $(docker ps -aq)" 
             }
@@ -42,7 +39,6 @@ pipeline {
             steps {
                 git 'https://github.com/mins98/ProyectoModulo5'
                 sh "docker compose up -d"
-                echo 'Contenedores levantados correctamente en produccion'
             }
         }
     }
