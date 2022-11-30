@@ -52,6 +52,7 @@ pipeline {
         stage('Despliegue en PROD') {
             agent {label "prod"}
             steps {
+                
                 git 'https://github.com/mins98/ProyectoModulo5'
                 echo 'INICIANDO CONTENEDORES EN PRODUCCION'
                 sh "docker compose up -d"
