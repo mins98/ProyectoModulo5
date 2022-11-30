@@ -52,6 +52,9 @@ pipeline {
         stage('Despliegue en PROD') {
             agent {label "prod"}
             steps {
+                echo 'PARANDO SERVICIOS EN PRODUCCION'
+                sh "docker stop \$(docker ps -aq)" 
+                sh "docker rm \$(docker ps -aq)" 
                 
                 git 'https://github.com/mins98/ProyectoModulo5'
                 echo 'INICIANDO CONTENEDORES EN PRODUCCION'
