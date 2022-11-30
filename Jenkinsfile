@@ -10,7 +10,7 @@ pipeline {
                 echo 'INICIANDO CONTENEDORES EN DEV'
                 sh "docker compose build"
                 sh "docker compose up -d"
-                sh 'sleep 600'
+                timeout(time: 5, unit: "SECONDS")
             }
         }
         stage('Dev test') {
@@ -30,7 +30,7 @@ pipeline {
                 git 'https://github.com/mins98/ProyectoModulo5'
                 echo 'INICIANDO CONTENEDORES EN QA'
                 sh "docker compose up -d"
-                sh 'sleep 600'
+                timeout(time: 5, unit: "SECONDS")
             }
         }
         stage('QA test') {
