@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IPSERVICIO = "192.168.1.11"
+        IPSERVICIO = 192.168.1.11
     }
     stages {
       
@@ -20,6 +20,7 @@ pipeline {
             steps {
                 echo 'INICIANDO TESTS EN DEV'
                 sh "docker ps"
+                sh "curl 192.168.1.11:80/biblioteca/materiales/create_list"
                 sh "curl $IPSERVICIO:80/biblioteca/materiales/create_list"
                 echo 'TESTS EN DEV FINALIZADOS'
                 sh "docker stop \$(docker ps -aq)" 
