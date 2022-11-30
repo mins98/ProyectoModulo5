@@ -30,6 +30,7 @@ pipeline {
         stage('QA test') {
             agent {label "qa"}
             steps {
+                echo 'Iniciando prueba QA'
                 sh "docker ps"
                 echo 'Prueba QA correcta'
                 sh "docker stop $(docker ps -aq)" 
