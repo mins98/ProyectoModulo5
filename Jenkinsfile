@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        IPSERVICIO = '192.168.1.11'
-    }
     stages {
       
         stage('clone and build') {
@@ -20,7 +17,7 @@ pipeline {
             steps {
                 echo 'INICIANDO TESTS EN DEV'
                 sh "docker ps"
-                sh "curl $IPSERVICIO:80/biblioteca/materiales/create_list"
+                sh "curl 192.168.1.11:80/biblioteca/materiales/create_list"
                 echo 'TESTS EN DEV FINALIZADOS'
                 sh "docker stop \$(docker ps -aq)" 
                 sh "docker rm \$(docker ps -aq)" 
@@ -39,8 +36,8 @@ pipeline {
             steps {
                 echo 'INICIANDO TESTS EN QA'
                 sh "docker ps"
-                sh "curl $IPSERVICIO:80/biblioteca/materiales/create_list"
-                sh "curl $IPSERVICIO:80/biblioteca/bibliotecas/create_list"
+                sh "curl 192.168.1.11:80/biblioteca/materiales/create_list"
+                sh "curl 192.168.1.11:80/biblioteca/bibliotecas/create_list"
                 echo 'TESTS EN QA FINALIZADOS'
                 sh "docker stop \$(docker ps -aq)" 
                 sh "docker rm \$(docker ps -aq)" 
