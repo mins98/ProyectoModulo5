@@ -15,10 +15,9 @@ pipeline {
             agent {label "dev"}
             steps {
                 sh "docker ps"
-                sh "docker stop pipe-web1-1" 
-                sh "docker stop pipe-storybook-1" 
-                sh "docker rm pipe-web1-1" 
-                sh "docker rm pipe-storybook-1"
+                echo 'Prueba DEV correcta'
+                sh "docker stop $(docker ps -aq)" 
+                sh "docker rm $(docker ps -aq)" 
             }
         }
         stage('QA') {
@@ -32,10 +31,9 @@ pipeline {
             agent {label "qa"}
             steps {
                 sh "docker ps"
-                sh "docker stop pipe-web1-1" 
-                sh "docker stop pipe-storybook-1" 
-                sh "docker rm pipe-web1-1" 
-                sh "docker rm pipe-storybook-1"
+                echo 'Prueba QA correcta'
+                sh "docker stop $(docker ps -aq)" 
+                sh "docker rm $(docker ps -aq)" 
             }
         }
         stage('Despliegue en PROD') {
