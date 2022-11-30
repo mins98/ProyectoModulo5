@@ -7,8 +7,8 @@ pipeline {
         stage('clone and build') {
             agent {label "dev"}
             steps {
-                sh "docker stop \$(docker ps -aq)" 
-                sh "docker rm \$(docker ps -aq)" 
+                def j1BuildResult = sh "docker ps"
+                echo $j1BuildResult
                 echo 'DESCARGANDO EN DEV'
                 git 'https://github.com/mins98/ProyectoModulo5'
                 echo 'INICIANDO CONTENEDORES EN DEV'
