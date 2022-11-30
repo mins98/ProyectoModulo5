@@ -14,6 +14,7 @@ pipeline {
         stage('Dev test') {
             agent {label "dev"}
             steps {
+                echo ${pipelineContext} 
                 sh "docker ps"
                 sh "docker stop pipe-web1-1" 
                 sh "docker stop pipe-storybook-1" 
