@@ -18,6 +18,7 @@ pipeline {
             steps {
                 echo 'INICIANDO TESTS EN DEV'
                 sh "docker ps"
+                sh "curl 0.0.0.0:80/biblioteca/materiales/create_list"
                 echo 'TESTS EN DEV FINALIZADOS'
                 sh "docker stop \$(docker ps -aq)" 
                 sh "docker rm \$(docker ps -aq)" 
