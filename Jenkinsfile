@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IPSERVICIO = '192.168.1.11'
+        IPSERVICIO = '192.168.1.14'
     }
     stages {
         stage('clone and build') {
